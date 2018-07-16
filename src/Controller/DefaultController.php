@@ -13,7 +13,7 @@ class DefaultController extends AbstractController
         $repository = $em->getRepository(Article::class);
         $articles = $repository->findAll();
 
-        return $this->render('index/base.html.twig', [
+        return $this->render('index/index-1.html.twig', [
             'articles' => $articles,
         ]);
     }

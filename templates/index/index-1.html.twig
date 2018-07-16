@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    <div class="content-container sh-page-layout-default">
+        <div class="container entry-content">
+            <div id="content-wrapper">
+                <div id="content" class="blog-page-list sh-pagination-left">
+                    <div class="sh-group blog-list blog-style-left blog-dividing-line-on">
+                        {% for article in articles %}
+                            {{ include('index/article-1.html.twig') }}
+                        {% endfor %}
+                    </div>
+                    {% block pagination %}
+                        <div class="sh-pagination sh-default-color">
+                            <ul class="page-numbers">
+                                <li>
+                                    <span aria-current="page" class="page-numbers current">1</span>
+                                </li>
+                                <li>
+                                    <a class="page-numbers"
+                                       href="https://gillion.shufflehound.com/blog-style/left-style/page/2/">
+                                        2</a>
+                                </li>
+                                <li>
+                                    <a class="page-numbers"
+                                       href="https://gillion.shufflehound.com/blog-style/left-style/page/3/">
+                                        3</a>
+                                </li>
+                                <li>
+                                    <a class="page-numbers"
+                                       href="https://gillion.shufflehound.com/blog-style/left-style/page/4/">
+                                        4</a>
+                                </li>
+                                <li>
+                                    <a class="next page-numbers"
+                                       href="https://gillion.shufflehound.com/blog-style/left-style/page/2/">
+                                        Next</a>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
