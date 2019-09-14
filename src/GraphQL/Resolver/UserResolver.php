@@ -6,13 +6,14 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use GraphQL\Type\Definition\ResolveInfo;
 use Overblog\GraphQLBundle\Definition\Argument;
+use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
 
 /**
  * Class UserResolver
  * @package App\GraphQL\Resolver
  */
-Class UserResolver implements ResolverInterface
+Class UserResolver implements ResolverInterface, AliasedInterface
 {
     /**
      * @var EntityManagerInterface
@@ -41,10 +42,10 @@ Class UserResolver implements ResolverInterface
     }
 
     /**
-     * @param string $id
+     * @param int $id
      * @return object|null
      */
-    public function resolve(string $id)
+    public function resolve(int $id)
     {
         return $this->em->find(User::class, $id);
     }
@@ -56,5 +57,18 @@ Class UserResolver implements ResolverInterface
     public function name(User $user) :string
     {
         return $user->getName();
+    }
+
+    /**
+     * Returns methods aliases.
+     *
+     * For instance:
+     * array('myMethod' => 'myAlias')
+     *
+     * @return array
+     */
+    public static function getAliases(): array
+    {
+        return ['resolve' => 'resolve'];
     }
 }

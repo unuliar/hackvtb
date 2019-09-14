@@ -2,7 +2,7 @@ Query:
   type: object
   config:
     fields:
-      author:
+      user:
         type: User
         args:
           id:
