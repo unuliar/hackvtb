@@ -1,6 +1,3 @@
 index:
     path: /
     controller: App\Controller\DefaultController::index
-article-page:
-    path: /article/{slug}
-    controller: App\Controller\ArticlePageController::show
