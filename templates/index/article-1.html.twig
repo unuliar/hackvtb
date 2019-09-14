@@ -1,0 +1,70 @@
+<article id="post-53"
+         class="post-item post-53 post type-post status-publish format-standard has-post-thumbnail hentry category-guide category-lifestyle tag-guide tag-life-hack tag-lifestyle tag-travel">
+    <div class="post-container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 post-container-left">
+                <div class="post-thumbnail">
+                    <div class="sh-ratio">
+                        <div class="sh-ratio-container">
+                            <div class="sh-ratio-content"
+                                 style="background-image: url({{ absolute_url(asset('asset/images/'~article.Slug~'.png')) }});"></div>
+                        </div>
+                    </div>
+                    <a href="{{ path('article-page', {'slug': article.Slug}) }}"
+                       class="post-overlay"></a>
+                    <div class="post-overlay-content"></div>
+                    {% if article.Hardness > 0 %}
+                        <div class="post-review post-review-standard"
+                             style="background-color: #9e673c; background: linear-gradient(to bottom, #9e673c 0%,#da9858 100%);">
+                            <div class="post-review-score">
+                                {{ article.Hardness }}<!--<span>.5</span>-->
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 post-container-right" style="height: 438px;">
+                <div class="post-content-container">
+                    <div class="post-categories-container">
+                        <div class="post-categories">
+                            <a href="https://gillion.shufflehound.com/category/guide/">
+                                Опыт</a>,
+                            <a href="https://gillion.shufflehound.com/category/lifestyle/">
+                                Лайфхаки</a>,
+                            <a href="https://gillion.shufflehound.com/category/lifestyle/">
+                                Советы</a>,
+                            <a href="https://gillion.shufflehound.com/category/lifestyle/">
+                                ЕГЭ</a>
+                        </div>
+                    </div>
+                    <h2>
+                        <a href="{{ path('article-page', {'slug': article.Slug}) }}"
+                           class="post-title">{{ article.header }}&nbsp;</a>
+                    </h2>
+                    <div class="post-content">
+                        <p>
+                            {{ article.Content }}
+                            \(a \ne 10\)
+                        </p>
+                    </div>
+                    <div class="post-meta">
+                        <div class="post-meta-content">
+                                <span class="post-auhor-date">
+                                    <span>
+                                        <a href="" class="post-author">{{ article.Author }}</a>
+                                    </span>,
+                                    <a href="" class="post-date">{{ article.CreationDate|date('d.m.Y') }}</a>
+                                </span>
+                            <a href="#comments" class="post-comments">
+                                <i class="icon icon-bubble"></i>{{ article.CommentsNum }}</a>
+                            <span class="post-readtime">
+                                        <i class="icon icon-clock"></i>{{ article.ReadTime }} мин.
+                                    <span>чтения</span></span>
+                            <span class="responsive-post-read-later">&nbsp;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
