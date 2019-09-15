@@ -24,4 +24,16 @@ class EventController extends AbstractController
     {
         return $this->render('event/create.html.twig');
     }
+
+    /**
+     * @Route("/event/room/{id}",name="event-room")
+     * @param $id
+     * @return Response
+     */
+    public function room($id)
+    {
+        return $this->render('event/room.html.twig', [
+            'event_id' => $id
+        ]);
+    }
 }

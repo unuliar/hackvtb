@@ -49,8 +49,8 @@ class LoginController extends AbstractController
             $entityManager->flush();
 
             $response = new RedirectResponse($this->generateUrl('main'));
-            $response->headers->setCookie(Cookie::create('token', $authToken));
-            $response->headers->setCookie(Cookie::create('user_id', $user[0]->getId()));
+            $response->headers->setCookie(Cookie::create('token', $authToken, 0, '/', null, null, false));
+            $response->headers->setCookie(Cookie::create('user_id', $user[0]->getId(), 0, '/', null, null, false));
 
             return $response;
         } else {

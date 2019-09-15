@@ -52,6 +52,38 @@ class Event
     private $messages;
 
     /**
+     * @return mixed
+     */
+    public function getBlocks()
+    {
+        return $this->blocks;
+    }
+
+    /**
+     * @param mixed $blocks
+     */
+    public function setBlocks($blocks): void
+    {
+        $this->blocks = $blocks;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * @param mixed $messages
+     */
+    public function setMessages($messages): void
+    {
+        $this->messages = $messages;
+    }
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $starttime;

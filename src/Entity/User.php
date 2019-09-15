@@ -26,10 +26,48 @@ class User
      */
     private $token;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="user")
+     */
+    private $messages;
+
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Event", mappedBy="users")
      */
     private $events;
+
+    /**
+     * @return mixed
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    /**
+     * @param mixed $events
+     */
+    public function setEvents($events): void
+    {
+        $this->events = $events;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * @param mixed $messages
+     */
+    public function setMessages($messages): void
+    {
+        $this->messages = $messages;
+    }
 
     public function getId(): ?int
     {

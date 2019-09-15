@@ -1,0 +1,146 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/asset/css/event/room.css" />
+{% endblock %}
+
+{% block js %}
+    <script>
+        var event_id = {{ event_id }};
+    </script>
+    <script src="/asset/js/controllers/event/room.js"></script>
+{% endblock %}
+{% block content %}
+<div ng-controller="RoomController as rc" ng-init="getData()">
+
+    <div class="container-fluid" >
+        <div class="row w-100">
+            <div class="status-bar">
+                <div class="row w-100">
+                    <div class="col-md-9">
+                        <sub>В голосовании учавствуют</sub><br>
+                        <div class="members-bar">
+                            <span class="user-online">Admin</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <b>Арбитр:</b> Admin
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row h-100">
+            <div class="col-md-9 p-0">
+                <div class="row" style="height:40%;">
+                    <div class="blocks-container">
+                        <div class="document-block ui-card">
+                            <div class="row w-100">
+                                <div class="col-md-2">
+                                    <i class="mdi mdi-cube-outline pr-0"></i> Блок <b>#1</b>
+                                </div>
+                                <div class="col-md-10" style="text-align:right;">
+                                    <a href="#">Предложено версий: 4</a>
+                                </div>
+                            </div>
+                            <div class="row w-100" style="padding:15px;">
+                                <pre>adsadasdsa dsadas sa
+adsadasdsa dsadas sa
+adsadasdsa dsadas sa</pre>
+                            </div>
+                            <div class="row w-100" style="display: flex; justify-content:flex-end;">
+                                <button  class="btn btn-success"><i class="mdi mdi-plus-network pr-0"></i> Предложить версию</button>
+                            </div>
+                        </div>
+
+                        <div class="document-block ui-card">
+                            <div class="row w-100">
+                                <div class="col-md-2">
+                                    <i class="mdi mdi-cube-outline pr-0"></i> Блок <b>#1</b>
+                                </div>
+                                <div class="col-md-10" style="text-align:right;">
+                                    <a href="#">Предложено версий: 4</a>
+                                </div>
+                            </div>
+                            <div class="row w-100" style="padding:15px;">
+                                <pre>adsadasdsa dsadas sa
+adsadasdsa dsadas sa
+adsadasdsa dsadas sa</pre>
+                            </div>
+                            <div class="row w-100" style="display: flex; justify-content:flex-end;">
+                                <button  class="btn btn-success"><i class="mdi mdi-plus-network pr-0"></i> Предложить версию</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pr-0" style="height:60%;">
+                    <div class="conversation-container pr-0">
+                        <div class="row conversation pr-0 mr-0" style="height:400px;">
+                            <div class="row w-100" ng-repeat="message in event_data[0].messages">
+                                <div class="message w-100" ng-class="{'message-outcoming': checkOutcoming(message)">
+                                    <div class="message-box ui-card ">
+                                        <div class="row w-100">
+                                            <div class="col-md-5">
+                                                <b>[[ message.user.name ]]</b> пишет
+                                            </div>
+                                            <div class="col-md-7" ng-init="tdate = formatDate(message.time)" style="text-align: right">
+                                                [[tdate]]
+                                            </div>
+                                        </div>
+                                        <div class="row w-100 text" style="padding:15px;">
+                                            [[message.content]]
+                                        </div>
+{#                                        <div class="row" style="padding:15px;">#}
+{#                                            <a href="#"><i class="mdi mdi-paperclip pr-0"></i> afodfhwufewufh2r4.doc</a>#}
+{#                                        </div>#}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row w-100">
+                            <div class="col-md-9">
+                                <div class="form-group w-100">
+                                    <label for="message">Сообщение</label>
+                                    <textarea id="message" class="form-control" ng-model="message" rows="5" style="width:100%">
+
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-3" style="padding-top:35px;">
+                                <div class="row w-100" style="margin-bottom: 15px">
+                                    <button class="btn btn-info btn-lg"><i class="mdi mdi-paperclip"></i> Прикрепить файл</button>
+                                </div>
+                                <div class="row w-100">
+                                    <button class="btn btn-primary btn-lg" ng-click="sendMessage(message)">Написать</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 p-0">
+                <div class="information-sidebar">
+                    <div class="item tac">
+                        <h3>Голосование</h3>
+                        <p>[[event_data[0].name]]</p>
+                    </div>
+                    <hr>
+                    <div class="item tac">
+                        <h3>Материалы</h3>
+                    </div>
+                    <div class="item">
+                        <img src="/asset/images/doc.png" style="max-width:60px;float:left; margin-right:15px;">
+                        <h5>Презентация</h5>
+                        <a href="#">Скачать</a>
+                    </div>
+
+                    <div class="sidebar-footer">
+                        <button class="btn btn-danger">Закрыть голосование</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

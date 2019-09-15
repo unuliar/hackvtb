@@ -1,4 +1,4 @@
-app.controller('EventCreateController', function($scope) {
+app.controller('EventCreateController', function($scope, $cookies) {
 
     $scope.hide_create_form = false;
 
@@ -74,7 +74,18 @@ app.controller('EventCreateController', function($scope) {
         return flag;
     };
 
-    $scope.startBlockSlicing = function () {
+    $scope.startBlockSlicing = function (event) {
+
+        $scope.apiCall('event', 'POST', {
+            name: event.name,
+            arbiter: $scope.getCookie('user_id'),
+            status: 0,
+            type: event.type,
+            starttime: event.starttime,
+            endtime: event.endtime
+        }, function(){
+
+        });
         $scope.hide_create_form = true;
         $scope.step = 1;
     };
