@@ -22,7 +22,7 @@ class Vote
     private $user;
 
     /**
-     *
+     * @ORM\Column(type="integer")
      */
     private $value;
 

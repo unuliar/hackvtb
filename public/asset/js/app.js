@@ -18,7 +18,7 @@ app.run(function($rootScope, $http){
      */
     $rootScope.apiCall = function(func, method, data, successCallback) {
         $http({
-            method: method.toUpperCase(),
+            method: method,
             params: data,
             url: '/api/' + func
         }).then(successCallback).catch(function(error){

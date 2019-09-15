@@ -33,42 +33,30 @@
             <div class="col-md-9 p-0">
                 <div class="row" style="height:40%;">
                     <div class="blocks-container">
-                        <div class="document-block ui-card">
-                            <div class="row w-100">
+                        <div ng-repeat="block in event_data[0].blocks track by $index">
+                        <div class="document-block ui-card" ng-if="notVersion(block)">
+                            <div >
+                            <div class="row w-100" >
                                 <div class="col-md-2">
-                                    <i class="mdi mdi-cube-outline pr-0"></i> Блок <b>#1</b>
+                                    <i class="mdi mdi-cube-outline pr-0"></i> Блок <b>#[[$index]]</b>
                                 </div>
                                 <div class="col-md-10" style="text-align:right;">
-                                    <a href="#">Предложено версий: 4</a>
+                                    <button class="btn btn-primary" ng-click="openVersions(block.id)" ng-if="block.versions.length != 0">Предложено версий: [[block.versions.length]]</button>
                                 </div>
                             </div>
                             <div class="row w-100" style="padding:15px;">
-                                <pre>adsadasdsa dsadas sa
-adsadasdsa dsadas sa
-adsadasdsa dsadas sa</pre>
+                                <pre>[[block.content]]</pre>
+                            </div>
+                            <div class="row w-100" ng-if="block.show_add">
+                                <div class="form-group">
+                                    <textarea class="form-control" ng-model="block.content"></textarea>
+                                </div>
                             </div>
                             <div class="row w-100" style="display: flex; justify-content:flex-end;">
-                                <button  class="btn btn-success"><i class="mdi mdi-plus-network pr-0"></i> Предложить версию</button>
+                                <a href="/event/[[block.id]]/variant" target="_blank"><button class="btn btn-success"><i class="mdi mdi-plus-network pr-0"></i> Предложить версию</button></a>
                             </div>
                         </div>
-
-                        <div class="document-block ui-card">
-                            <div class="row w-100">
-                                <div class="col-md-2">
-                                    <i class="mdi mdi-cube-outline pr-0"></i> Блок <b>#1</b>
-                                </div>
-                                <div class="col-md-10" style="text-align:right;">
-                                    <a href="#">Предложено версий: 4</a>
-                                </div>
-                            </div>
-                            <div class="row w-100" style="padding:15px;">
-                                <pre>adsadasdsa dsadas sa
-adsadasdsa dsadas sa
-adsadasdsa dsadas sa</pre>
-                            </div>
-                            <div class="row w-100" style="display: flex; justify-content:flex-end;">
-                                <button  class="btn btn-success"><i class="mdi mdi-plus-network pr-0"></i> Предложить версию</button>
-                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -76,7 +64,7 @@ adsadasdsa dsadas sa</pre>
                     <div class="conversation-container pr-0">
                         <div class="row conversation pr-0 mr-0" style="height:400px;">
                             <div class="row w-100" ng-repeat="message in event_data[0].messages">
-                                <div class="message w-100" ng-class="{'message-outcoming': checkOutcoming(message)">
+                                <div class="message w-100" ng-init="out = checkOut(message)" ng-class="{'message-outcoming': out}">
                                     <div class="message-box ui-card ">
                                         <div class="row w-100">
                                             <div class="col-md-5">

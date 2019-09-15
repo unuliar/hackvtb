@@ -15,6 +15,7 @@ use App\Entity\Event;
 use App\Entity\Message;
 use App\Entity\User;
 use App\Entity\Vote;
+use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\FOSRestBundle;
@@ -24,6 +25,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ApiController extends AbstractFOSRestController
 {
+    private $em;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->em = $entityManager;
+    }
+
     /** parent param
      * @Rest\Post("/api/block")
      * @param Request $request
@@ -152,6 +160,18 @@ class ApiController extends AbstractFOSRestController
        // print_r(json_encode($request->get('user')))
 
         $rep = $this->getDoctrine()->getRepository(Vote::class);
+
+        if($vote = $rep->findBy([
+            'user' => $request->get('user'),
+            'block' => $request->get('block')
+        ])) {
+            foreach ($vote as $item)
+                {
+                $this->em->remove($item);
+            }
+            $this->em->flush();
+
+        }
         $result = $rep->createByRequest($request);
 
         return $this->handleView($this->view(['status' => 'ok', 'id' => $result->getId()], Response::HTTP_CREATED));

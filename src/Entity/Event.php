@@ -185,36 +185,4 @@ class Event
     {
         $this->users = $users;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getMessages()
-    {
-        return $this->messages;
-    }
-
-    /**
-     * @param mixed $messages
-     */
-    public function setMessages($messages): void
-    {
-        $this->messages = $messages;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBlocks()
-    {
-        return $this->blocks;
-    }
-
-    /**
-     * @param mixed $blocks
-     */
-    public function setBlocks($blocks): void
-    {
-        $this->blocks = $blocks;
-    }
 }

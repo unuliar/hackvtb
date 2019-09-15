@@ -1,0 +1,45 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block js %}
+    <script type="application/javascript" src="/asset/js/controllers/event/room.js"></script>
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/asset/css/event/style.css"/>
+{% endblock %}
+
+{% block content %}
+    <script>
+        var block_id = {{ block_id }}
+    </script>
+    <div ng-controller="RoomController as rc">
+        <h1>Варианты блока</h1>
+        <div class="create-form ui-card" ng-init="getBlock()">
+            <div class="blocks-container">
+                <div ng-repeat="blockv in block[0].versions track by $index">
+                    <div class="document-block ui-card" ng-if="notVersion(block)">
+                        <div >
+                            <div class="row w-100" >
+                                <div class="col-md-2">
+                                    <i class="mdi mdi-cube-outline pr-0"></i> Вариант блока <b>#[[$index]]</b>
+                                </div>
+                            </div>
+                            <div class="row w-100" style="padding:15px;">
+                                <pre>[[blockv.content]]</pre>
+                            </div>
+                            <div class="row w-100" ng-if="block.show_add">
+                                <div class="form-group">
+                                    <textarea class="form-control" ng-model="block.content"></textarea>
+                                </div>
+                            </div>
+                            <div class="row w-100" style="display: flex; justify-content:flex-end;">
+                                <button ng-click="votePlus(blockv.id, blockv)" class="btn btn-success"><i class="mdi mdi-thumb-up pr-0"></i> За <div ng-if="blockv.votes.length > 0">(<span ng-init="countp = countPlusVotes(blockv.votes)">[[countp]]</span>)</div></button></a>&nbsp
+                                <button ng-click="voteMinus(blockv.id, blockv)" class="btn btn-danger"><i class="mdi mdi-thumb-down pr-0"></i> Против <div ng-if="blockv.votes.length > 0">(<span ng-init="countm = countMinusVotes(blockv.votes)">[[countm]]</span>)</div></button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+{% endblock %}

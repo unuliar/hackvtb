@@ -1,0 +1,26 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block js %}
+
+    <script type="application/javascript" src="/asset/js/controllers/event/room.js"></script>
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/asset/css/event/style.css"/>
+{% endblock %}
+
+{% block content %}
+    <script>
+        var block_id = {{ block_id }}
+    </script>
+    <div ng-controller="RoomController as rc">
+        <h1>Новый вариант блока</h1>
+        <div class="create-form ui-card" ng-init="getBlock()">
+            <div class="form-group">
+                <textarea class="form-control" ng-model="block[0].content"></textarea>
+            </div>
+            <div class="form-group">
+                <button ng-click="addVariant()" class="btn btn-primary btn-lg">Создать вариант</button>
+            </div>
+        </div>
+{% endblock %}

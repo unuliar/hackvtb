@@ -36,4 +36,28 @@ class EventController extends AbstractController
             'event_id' => $id
         ]);
     }
+
+    /**
+     * @Route("/event/{block}/variant",name="block-variant")
+     * @param $block
+     * @return Response
+     */
+    public function addVariant($block)
+    {
+        return $this->render('/event/variant.html.twig',[
+            'block_id' => $block
+        ]);
+    }
+
+    /**
+     * @Route("/event/versions/{block}",name="block-versions")
+     * @param $block
+     * @return Response
+     */
+    public function versions($block)
+    {
+        return $this->render('/event/versions.html.twig', [
+            'block_id' => $block
+        ]);
+    }
 }
