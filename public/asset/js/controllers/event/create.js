@@ -170,7 +170,13 @@ app.controller('EventCreateController', function ($scope, $cookies) {
             })
         }
     };
-
+    $( document ).click(function(event) {
+        let id = event.target.id;
+        if(id != 'docText') {
+            $scope.popover = false;
+            $scope.$apply();
+        }
+    });
     $scope.getSelection = function () {
         let selection = null;
         if (window.getSelection) {
