@@ -1,0 +1,57 @@
+<html ng-app="xvote-app">
+<head>
+    <title>xVote</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/asset/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/asset/css/dashboard/style.css" />
+    {% block styles %}{% endblock %}
+</head>
+<body>
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <div class="col-md-2 p-0 h-100">
+            <div class="sidebar">
+                <div class="item logo">
+                    <img src="/asset/images/logo.png">
+                </div>
+                <div class="item user">
+                    Admin <i class="mdi mdi-chevron-down"></i><br>
+                    <sub>admin@xvote.com</sub>
+                </div>
+                <hr style="width:74%;">
+                <div class="item hover">
+                    <i class="mdi mdi-account-group-outline"></i>Пользователи
+                </div>
+
+{#                <div class="item hover">#}
+{#                    <i class="mdi mdi-file-document-outline"></i> Документы#}
+{#                </div>#}
+
+                <a href="/event">
+                    <div class="item hover">
+                        <i class="mdi mdi-ballot-outline"></i>Голосования
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-10 p-0">
+            <div class="canvas">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+<script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+<script src="/asset/js/bootstrap.min.js"></script>
+<script src="/asset/js/angular.js"></script>
+<script src="/asset/js/angular-ui.min.js"></script>
+<script src="/asset/js/app.js"></script>
+<script src="/asset/js/ng-quick-date.min.js"></script>
+{% block js %}{% endblock %}
+</body>
+</html>

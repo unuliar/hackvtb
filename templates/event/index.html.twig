@@ -1,0 +1,138 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/asset/css/event/style.css" />
+{% endblock %}
+{% block content %}
+<h1>Голосования <a href="/event/create"><button class="btn btn-primary" style="margin-left:50px;">Создать</button></a></h1>
+
+    <div class="event-wrapper">
+        <div class="event-item ui-card">
+            <div class="row">
+                <div class="col-md-2">
+                    <sub>Название голосования</sub>
+                    <h5 style="margin-top:9px;">Голосование</h5>
+                </div>
+                <div class="col-md-2">
+                    <sub>Арбитр</sub>
+                    <h5 style="margin-top:9px;">Admin</h5>
+                </div>
+                <div class="col-md-2">
+                    <sub>Начало</sub>
+                    <h5 style="margin-top:9px;">15.09.2019 13:00</h5>
+                </div>
+
+                <div class="col-md-2">
+                    <sub>Конец</sub>
+                    <h5 style="margin-top:9px;">15.09.2019 13:00</h5>
+                </div>
+
+                <div class="col-md-2">
+                    <sub>Статус</sub>
+                    <h5 style="margin-top:9px;" class="event-active"><i class="mdi mdi-clock-start"></i>Активен</h5>
+                </div>
+
+                <div class="col-md-2">
+                    <button class="btn btn-primary" >Открыть</button>
+                    <button class="btn btn-danger" disabled>Удалить</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-item ui-card">
+            <div class="row">
+                <div class="col-md-2">
+                    <sub>Название голосования</sub>
+                    <h5 style="margin-top:9px;">Голосование</h5>
+                </div>
+                <div class="col-md-2">
+                    <sub>Арбитр</sub>
+                    <h5 style="margin-top:9px;">Admin</h5>
+                </div>
+                <div class="col-md-2">
+                    <sub>Начало</sub>
+                    <h5 style="margin-top:9px;">15.09.2019 13:00</h5>
+                </div>
+
+                <div class="col-md-2">
+                    <sub>Конец</sub>
+                    <h5 style="margin-top:9px;">15.09.2019 13:00</h5>
+                </div>
+
+                <div class="col-md-2">
+                    <sub>Статус</sub>
+                    <h5 style="margin-top:9px;" class="event-planned"><i class="mdi mdi-progress-clock"></i>Запланировано</h5>
+                </div>
+
+                <div class="col-md-2">
+                    <button class="btn btn-primary" >Изменить</button>
+                    <button class="btn btn-danger" >Удалить</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-item ui-card">
+            <div class="row">
+                <div class="col-md-2">
+                    <sub>Название голосования</sub>
+                    <h5 style="margin-top:9px;">Голосование</h5>
+                </div>
+                <div class="col-md-2">
+                    <sub>Арбитр</sub>
+                    <h5 style="margin-top:9px;">Admin</h5>
+                </div>
+                <div class="col-md-2">
+                    <sub>Начало</sub>
+                    <h5 style="margin-top:9px;">15.09.2019 13:00</h5>
+                </div>
+
+                <div class="col-md-2">
+                    <sub>Конец</sub>
+                    <h5 style="margin-top:9px;">15.09.2019 13:00</h5>
+                </div>
+
+                <div class="col-md-2">
+                    <sub>Статус</sub>
+                    <h5 style="margin-top:9px;" class="event-consideration"><i class="mdi mdi-progress-alert"></i>На рассмотрении</h5>
+                </div>
+
+                <div class="col-md-2">
+                    <button class="btn btn-primary" >Открыть</button>
+                    <button class="btn btn-danger" disabled>Удалить</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-item ui-card">
+            <div class="row">
+                <div class="col-md-2">
+                    <sub>Название голосования</sub>
+                    <h5 style="margin-top:9px;">Голосование</h5>
+                </div>
+                <div class="col-md-2">
+                    <sub>Арбитр</sub>
+                    <h5 style="margin-top:9px;">Admin</h5>
+                </div>
+                <div class="col-md-2">
+                    <sub>Начало</sub>
+                    <h5 style="margin-top:9px;">15.09.2019 13:00</h5>
+                </div>
+
+                <div class="col-md-2">
+                    <sub>Конец</sub>
+                    <h5 style="margin-top:9px;">15.09.2019 13:00</h5>
+                </div>
+
+                <div class="col-md-2">
+                    <sub>Статус</sub>
+                    <h5 style="margin-top:9px;" class="event-finished"><i class="mdi mdi-calendar-check"></i>Завершён</h5>
+                </div>
+
+                <div class="col-md-2">
+                    <button class="btn btn-primary" >Протокол</button>
+                    <button class="btn btn-danger" disabled>Удалить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>xVote - вход в систему</title>
+    <link rel="stylesheet" href="/asset/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/asset/css/login/style.css" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="login-form-wrapper">
+            <span class="heading">xVote</span>
+
+            <div class="login-form">
+
+
+                <form action="/login/check" method="post">
+                    <div class="form-group">
+                        <label for="emailAddress">Email</label>
+                        <input type="email" class="form-control" id="emailAddress" name="login" placeholder="Введите email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Введите пароль">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Войти">
+                    </div>
+                    <span class="text-danger">{{ error }}</span>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

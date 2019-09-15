@@ -1,7 +1,0 @@
-User:
-  type: object
-  config:
-    resolveField: '@=resolver("App\\GraphQL\\Resolver\\UserResolver", [info, value, args])'
-    fields:
-      name:
-          type: String

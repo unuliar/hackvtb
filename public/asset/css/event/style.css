@@ -1,0 +1,50 @@
+.event-wrapper {
+    margin-top:90px;
+}
+.event-item {
+    margin-bottom:30px;
+    width:100%;
+}
+
+.event-active {
+    color: rgb(250,206,133);
+}
+
+.event-planned {
+    color: rgb(87,200,120);
+}
+
+.event-consideration {
+    color: rgb(41,184,245);
+}
+
+.event-finished {
+    color: rgb(62,200,69)
+}
+
+.create-form {
+    width:100%;
+}
+
+.event-type {
+    transition: all ease-in-out .4s;
+}
+
+.event-type-hover:hover {
+    background-color:#eee;
+    cursor: pointer;
+}
+
+.event-type-active {
+    background-color:rgb(104,199,84);
+    color:#fff;
+}
+[ng\:cloak],[ng-cloak],.ng-cloak{display:none !important}
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
