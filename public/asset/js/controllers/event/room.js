@@ -117,4 +117,8 @@ app.controller('RoomController', function($scope, $cookies){
 
         return count;
     };
+
+    $scope.closeEvent = function(id) {
+        location.href = '/event/close/' + id;
+    };
 });

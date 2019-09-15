@@ -1,0 +1,34 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block js %}
+    <script>
+        var event_id = {{ event_id }}
+    </script>
+    <script type="application/javascript" src="/asset/js/controllers/event/protocol.js"></script>
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/asset/css/event/style.css"/>
+    <link rel="stylesheet" href="/asset/css/ng-quick-date.css"/>
+    <link rel="stylesheet" href="/asset/css/ng-quick-date-default-theme.css"/>
+{% endblock %}
+{% block content %}
+    <div ng-controller="ProtocolController as ptc">
+        <h1>Отчет по голосованию</h1>
+        <div class="event-wrapper" ng-init="getEvent()">
+            <div class="create-form ui-card">
+                <div class="row">
+                    Название: <b>[[event[0].name]]</b><br>
+                </div>
+
+                <div class="row">
+                    Количество участников: <b>[[ event[0].users.length ]]</b>
+                </div>
+
+                <div class="row">
+                    Сформированный документ: <pre></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

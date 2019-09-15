@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Event;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -44,7 +46,7 @@ class EventController extends AbstractController
      */
     public function addVariant($block)
     {
-        return $this->render('/event/variant.html.twig',[
+        return $this->render('/event/variant.html.twig', [
             'block_id' => $block
         ]);
     }
@@ -58,6 +60,37 @@ class EventController extends AbstractController
     {
         return $this->render('/event/versions.html.twig', [
             'block_id' => $block
+        ]);
+    }
+
+    /**
+     * @Route("/event/close/{id}",name="close_event")
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function close($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        /** @var Event $event */
+        $event = $em->getRepository(Event::class)->find($id);
+
+
+        $event->setStatus(3);
+
+        $em->flush();
+        return new RedirectResponse('/event');
+    }
+
+    /**
+     * @Route("/event/protocol/{id}",name="event_protocol")
+     * @param $id
+     * @return Response
+     */
+    public function protocol($id)
+    {
+        return $this->render('/event/protocol.html.twig', [
+           'event_id' => $id
         ]);
     }
 }

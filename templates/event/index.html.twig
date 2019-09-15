@@ -45,8 +45,8 @@
                     <a href="/event/room/[[event.id]]"><button class="btn btn-primary">Открыть</button></a>
                 </div>
 
-                <div class="col-md-2" ng-if="event.status==4">
-                    <button class="btn btn-info" >Протокол</button>
+                <div class="col-md-2" ng-if="event.status==3">
+                    <button ng-click="openProtocol(event.id)" class="btn btn-info" >Протокол</button>
                 </div>
             </div>
         </div>

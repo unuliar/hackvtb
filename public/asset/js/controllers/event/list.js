@@ -31,4 +31,8 @@ app.controller('EventListController', function($scope) {
            $scope.eventList = result.data;
         });
     };
+
+    $scope.openProtocol = function(id) {
+        location.href = '/event/protocol/' + id;
+    };
 });

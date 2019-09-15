@@ -40,7 +40,7 @@
                                 <div class="col-md-2">
                                     <i class="mdi mdi-cube-outline pr-0"></i> Блок <b>#[[$index]]</b>
                                 </div>
-                                <div class="col-md-10" style="text-align:right;">
+                                <div class="col-md-9" style="text-align:right;">
                                     <button class="btn btn-primary" ng-click="openVersions(block.id)" ng-if="block.versions.length != 0">Предложено версий: [[block.versions.length]]</button>
                                 </div>
                             </div>
@@ -124,7 +124,7 @@
                     </div>
 
                     <div class="sidebar-footer">
-                        <button class="btn btn-danger">Закрыть голосование</button>
+                        <button ng-click="closeEvent(event_data[0].id)" class="btn btn-danger">Закрыть голосование</button>
                     </div>
                 </div>
             </div>
