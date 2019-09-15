@@ -17,22 +17,17 @@ class Vote
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="votes")
      */
     private $user;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $event;
-
-    /**
-     * @ORM\Column(type="integer")
+     *
      */
     private $value;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Block", inversedBy="votes")
      */
     private $block;
 
@@ -41,26 +36,14 @@ class Vote
         return $this->id;
     }
 
-    public function getUser(): ?int
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(int $user): self
+    public function setUser(User $user): self
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    public function getEvent(): ?int
-    {
-        return $this->event;
-    }
-
-    public function setEvent(int $event): self
-    {
-        $this->event = $event;
 
         return $this;
     }
@@ -77,12 +60,12 @@ class Vote
         return $this;
     }
 
-    public function getBlock(): ?int
+    public function getBlock(): ?Block
     {
         return $this->block;
     }
 
-    public function setBlock(int $block): self
+    public function setBlock(Block $block): self
     {
         $this->block = $block;
 

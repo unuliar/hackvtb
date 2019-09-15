@@ -22,7 +22,7 @@ class Event
     private $name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="events")
      */
     private $arbiter;
 
@@ -40,6 +40,16 @@ class Event
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="events")
      */
     private $users;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Block", mappedBy="event")
+     */
+    private $blocks;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="event")
+     */
+    private $messages;
 
     /**
      * @ORM\Column(type="datetime")
@@ -68,12 +78,12 @@ class Event
         return $this;
     }
 
-    public function getArbiter(): ?int
+    public function getArbiter(): ?User
     {
         return $this->arbiter;
     }
 
-    public function setArbiter(int $arbiter): self
+    public function setArbiter(User $arbiter): self
     {
         $this->arbiter = $arbiter;
 

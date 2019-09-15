@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Event;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @method Event|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,10 +20,7 @@ class EventRepository extends ServiceEntityRepository
         parent::__construct($registry, Event::class);
     }
 
-    // /**
-    //  * @return Event[] Returns an array of Event objects
-    //  */
-    /*
+
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('e')
@@ -34,8 +32,6 @@ class EventRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
-
     /*
     public function findOneBySomeField($value): ?Event
     {

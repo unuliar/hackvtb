@@ -17,12 +17,12 @@ class Message
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="messages")
      */
     private $user;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="messages")
      */
     private $event;
 
@@ -41,24 +41,24 @@ class Message
         return $this->id;
     }
 
-    public function getUser(): ?int
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(int $user): self
+    public function setUser(User $user): self
     {
         $this->user = $user;
 
         return $this;
     }
 
-    public function getEvent(): ?int
+    public function getEvent(): ?Event
     {
         return $this->event;
     }
 
-    public function setEvent(int $event): self
+    public function setEvent(Event $event): self
     {
         $this->event = $event;
 
