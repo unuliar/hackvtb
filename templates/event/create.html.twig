@@ -85,14 +85,20 @@
                 <sup ng-cloak>[[ help[step] ]]</sup>
                 <pre id="docText" ng-mouseup="checkSelected($event)" style=" color:black; margin-top:50px;">[[ event.document ]]</pre>
                 <pre id="docText2" ></pre>
+
+                <div class="form-group" style="text-align:center; padding-top:50px;">
+                    <button class="btn btn-primary btn-lg" ng-disabled="collisionDetected"
+                            onclick="location.href='/event'"><i class="mdi mdi-content-cut"></i>Закончить формирование блоков
+                    </button>
+                </div>
             </div>
 
 
+        <sup ng-show="collisionDetected" style="margin:15px;">Обнаружена коллизия, измените выделение</sup>
             <div class="pop-availability" ng-show="popover" ng-style="{'top': y,'left': x}">
                 <button ng-show="!collisionDetected" ng-click="addBlock()" class="btn btn-light ">
                     +
                 </button>
-                <sup ng-show="collisionDetected">Обнаружена коллизия, измените выделение</sup>
             </div>
         </div>
     </div>
