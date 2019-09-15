@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" href="/asset/css/event/style.css" />
-    <link rel="stylesheet" href="/asset/css/ng-quick-date.css" />
-    <link rel="stylesheet" href="/asset/css/ng-quick-date-default-theme.css" />
+    <link rel="stylesheet" href="/asset/css/event/style.css"/>
+    <link rel="stylesheet" href="/asset/css/ng-quick-date.css"/>
+    <link rel="stylesheet" href="/asset/css/ng-quick-date-default-theme.css"/>
 {% endblock %}
 
 {% block content %}
@@ -49,33 +49,51 @@
                 <quick-datepicker ng-model="event.enddate" date-filter="blockBeforeToday" placeholder="Установить дату"  style="margin-left:20px; "></quick-datepicker>
             </div>
 
-            <div class="form-group">
-                <label for="document">Документ</label>
-                <textarea class="form-control" id="document" ng-model="event.document" rows="20"></textarea>
-            </div>
+                <div class="form-group">
+                    <label for="document">Документ</label>
+                    <textarea class="form-control" id="document" ng-model="event.document" rows="20"></textarea>
+                </div>
 
-            <hr>
-            <h2 style="margin-bottom:40px; margin-top:40px;">Участники голосования  <button class="btn btn-success" style="margin-left:40px;" ng-click="event.users.push({email:null})"><i class="mdi mdi-plus"></i> Добавить</button></h2>
-            <div class="form-group">
-                <div class="row" ng-repeat="user in event.users track by $index" style="margin-bottom: 20px">
-                    <div class="col-md-10 p-0">
-                    <label>E-mail</label>
-                    <input type="text" class="form-control" ng-model="event.users[$index].email" placeholder="Введите e-mail участника" />
-                    </div>
-                    <div class="col-md-2" style="padding-top:30px;">
-                        <button class="btn btn-danger" ng-click="event.users.splice(event.users.indexOf(user), 1);" ng-disabled="event.users.length==1"><i class="mdi mdi-trash-can"></i> Удалить</button>
+                <hr>
+                <h2 style="margin-bottom:40px; margin-top:40px;">Участники голосования
+                    <button class="btn btn-success" style="margin-left:40px;" ng-click="event.users.push({email:null})">
+                        <i class="mdi mdi-plus"></i> Добавить
+                    </button>
+                </h2>
+                <div class="form-group">
+                    <div class="row" ng-repeat="user in event.users track by $index" style="margin-bottom: 20px">
+                        <div class="col-md-10 p-0">
+                            <label>E-mail</label>
+                            <input type="text" class="form-control" ng-model="event.users[$index].email"
+                                   placeholder="Введите e-mail участника"/>
+                        </div>
+                        <div class="col-md-2" style="padding-top:30px;">
+                            <button class="btn btn-danger" ng-click="event.users.splice(event.users.indexOf(user), 1);"
+                                    ng-disabled="event.users.length==1"><i class="mdi mdi-trash-can"></i> Удалить
+                            </button>
+                        </div>
                     </div>
                 </div>
+
+                <div class="form-group" style="text-align:center; padding-top:50px;">
+                    <button class="btn btn-primary btn-lg" ng-disabled="!checkEvent(event)"
+                            ng-click="startBlockSlicing()"><i class="mdi mdi-content-cut"></i>Перейти к разметке блоков
+                    </button>
+                </div>
+            </div>
+            <div class="ui-card" ng-if="hide_create_form">
+                <sup ng-cloak>[[ help[step] ]]</sup>
+                <pre id="docText" ng-mouseup="checkSelected($event)" style=" color:black; margin-top:50px;">[[ event.document ]]</pre>
+                <pre id="docText2" ></pre>
             </div>
 
-            <div class="form-group" style="text-align:center; padding-top:50px;">
-                <button class="btn btn-primary btn-lg" ng-disabled="!checkEvent(event)" ng-click="startBlockSlicing(event)"> <i class="mdi mdi-content-cut"></i>Перейти к разметке блоков</button>
+
+            <div class="pop-availability" ng-show="popover" ng-style="{'top': y,'left': x}">
+                <button ng-show="!collisionDetected" ng-click="addBlock()" class="btn btn-light ">
+                    +
+                </button>
+                <sup ng-show="collisionDetected">Обнаружена коллизия, измените выделение</sup>
             </div>
         </div>
-        <div class="ui-card" ng-if="hide_create_form">
-            <sup ng-cloak>[[ help[step] ]]</sup>
-            <pre style=" color:black; margin-top:50px;">[[ event.document ]]</pre>
-        </div>
-    </div>
     </div>
 {% endblock %}
