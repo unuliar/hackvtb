@@ -4,6 +4,12 @@ app.controller('EventCreateController', function($scope) {
 
     $scope.step = 0;
 
+    $scope.collisionDetected = false;
+
+    $scope.slicesBlocks = [];
+
+    $scope.currentBlock = 0;
+
     $scope.step_headings = [
         "Шаг 1: Первоначальная настройка голосования",
         "Шаг 2: Разделение документа на блоки",
@@ -47,6 +53,101 @@ app.controller('EventCreateController', function($scope) {
         return new Date();
     };
 
+
+    $scope.checkSelected = function(event) {
+        $scope.collisionDetected = false;
+        let selection = $scope.getSelection();
+
+        if(selection !== null && selection.anchorOffset !== selection.focusOffset) {
+            let s = selection.baseOffset;
+            let e = selection.focusOffset;
+            if (s < e) {
+                s = selection.baseOffset;
+                e = selection.focusOffset;
+            } else {
+                s = selection.focusOffset;
+                e = selection.baseOffset;
+            }
+            $scope.currentBlock = {
+              start: s,
+              end: e,
+                content: selection.toString(),
+            };
+            console.log($scope.currentBlock);
+            $scope.checkBlock();
+            $scope.showPopover(event);
+        } else {
+            $scope.popover = false;
+        }
+    };
+
+
+    $scope.checkBlock = function() {
+        let points = [];
+        points.push({x: $scope.currentBlock.start, left: true});
+        points.push({x: $scope.currentBlock.end, left: false});
+        for(let bl of $scope.slicesBlocks) {
+            points.push({x: bl.start, left: true});
+            points.push({x: bl.end, left: false});
+        }
+        points.sort(function(a, b) {
+            return a.x - b.x;
+        });
+
+        numLayers = 0;
+        for(let p of points) {
+            if(p.left) {
+                numLayers++;
+            } else {
+                numLayers--;
+            }
+            if(numLayers > 1) {
+                $scope.collisionDetected = true;
+                break;
+            }
+        }
+    };
+
+    String.prototype.splice = function(idx, rem, str) {
+        return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+    };
+
+    $scope.addBlock = function() {
+        if($scope.currentBlock !== null && !$scope.collisionDetected) {
+            $scope.slicesBlocks.push($scope.currentBlock);
+            $scope.apiCall('block', 'POST', {
+                event: $scope.event.id,
+                content: $scope.currentBlock.content,
+                placeholder: $scope.currentBlock.start + ":" + $scope.currentBlock.end,
+                user: $scope.getCookie('user_id'),
+            }, function (result) {
+                console.log(result);
+            })
+        }
+    };
+
+    $scope.getSelection = function() {
+        let selection = null;
+        if (window.getSelection) {
+            selection = window.getSelection();
+        } else if (document.selection && document.selection.type != "Control") {
+            selection = document.selection;
+        }
+        return selection;
+    };
+
+    $scope.popover = false;
+    $scope.coord = {};
+    $scope.x = 0;
+    $scope.y = 0;
+
+    //Method to show popover
+    $scope.showPopover = function(mouseEvent) {
+        $scope.popover = true;
+        $scope.x = mouseEvent.pageX + 'px';
+        $scope.y = mouseEvent.pageY + 'px';
+    };
+
     /**
      * Проверка введенных данных
      *
@@ -75,6 +176,22 @@ app.controller('EventCreateController', function($scope) {
     };
 
     $scope.startBlockSlicing = function () {
+        if($scope.currentBlock !== null && !$scope.collisionDetected) {
+            $scope.slicesBlocks.push($scope.currentBlock);
+            $scope.apiCall('event', 'POST', {
+                name: $scope.event.name,
+                arbiter: $scope.getCookie('user_id'),
+                type: $scope.event.type,
+                endtime: $scope.event.enddate,
+                starttime: $scope.event.startdate,
+            }, function (result) {
+                if(result.data.id  !== undefined) {
+                    $scope.event.id = result.data.id;
+                }
+                console.log(result);
+            })
+        }
+
         $scope.hide_create_form = true;
         $scope.step = 1;
     };

@@ -18,12 +18,18 @@ app.run(function($rootScope, $http){
     $rootScope.apiCall = function(func, method, data, successCallback) {
         $http({
             method: method.toUpperCase(),
-            data: data,
+            params: data,
             url: '/api/' + func
         }).then(successCallback).catch(function(error){
             console.log('Ошибка при запросе: ');
             console.log(error);
         });
+    };
+
+    $rootScope.getCookie = function (name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
     };
 
     /**

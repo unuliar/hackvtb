@@ -25,7 +25,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ApiController extends AbstractFOSRestController
 {
     /** parent param
-     * @Rest\Post("/api/blockk")
+     * @Rest\Post("/api/block")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -75,9 +75,9 @@ class ApiController extends AbstractFOSRestController
 
         $arb = $request->get('arbiter');
 
-        $request->query->set('starttime', $request->get('starttime') ?? new \DateTime());
+        $request->query->set('starttime',  new \DateTime($request->get('starttime')) ?? new \DateTime());
         $request->query->set('arbiter', $rep->find($arb));
-        $request->query->set('endtime', $request->get('endtime') ?? new \DateTime("12.12.2099"));
+        $request->query->set('endtime',  new \DateTime($request->get('endtime')) ?? new \DateTime("12.12.2099"));
         $request->query->set('status', $request->get('start') === null ? 1 : 0);
 
         $rep = $this->getDoctrine()->getRepository(Event::class);

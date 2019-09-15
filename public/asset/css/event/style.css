@@ -48,3 +48,34 @@ pre {
     white-space: -o-pre-wrap;    /* Opera 7 */
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
+
+
+.pop-availability {
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 #969696;
+    display: inline-block;
+    min-width: 5px;
+    position: absolute;
+}
+.pop-title {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-color: #253542;
+    color: #fff;
+    padding: 10px 10px 5px 15px;
+}
+.pop-title p {
+    margin-bottom: 0;
+}
+.pop-title p:last-child {
+    margin-top: 10px;
+}
+.pop-title p span {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.pop-content {
+    color: #253542;
+    padding: 10px 15px;
+}
