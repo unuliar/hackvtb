@@ -1,3 +1,4 @@
 public/asset/js/* linguist-vendored
-!public/asset/js/app.js
-!public/asset/js/controllers/event/*
+public/asset/js/app.js linguist-vendored=false
+public/asset/js/controllers/event/* linguist-vendored=false
+src/Migrations/* linguist-vendored
