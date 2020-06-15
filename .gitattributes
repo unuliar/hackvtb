@@ -1,0 +1,3 @@
+public/asset/js/* linguist-vendored
+!public/asset/js/app.js
+!public/asset/js/controllers/event/*
